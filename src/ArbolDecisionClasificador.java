@@ -10,7 +10,6 @@ public class ArbolDecisionClasificador {
         System.out.print("Nombre del animal: ");
         String nombre = sc.nextLine().trim();
 
-
         Habitat habitat = decidirHabitat(sc);
 
         ClaseBiologica clase = decidirClase(sc, habitat);
