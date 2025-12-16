@@ -44,27 +44,48 @@ public class ArbolDecisionClasificador {
     }
 
     private ClaseBiologica decidirClase(Scanner sc, Habitat habitat) {
-        if (preguntarSiNo(sc, "¿Tiene pelo? (si/no): ")) {
-            return ClaseBiologica.MAMIFERO;
+
+        if (habitat == Habitat.AEREO) {
+            return ClaseBiologica.AVE;
         } else {
-            if (preguntarSiNo(sc, "¿Tiene plumas? (si/no): ")) {
-                return ClaseBiologica.AVE;
+            if (preguntarSiNo(sc, "Tiene pelaje? (si/no): ")){
+                return ClaseBiologica.MAMIFERO;
             } else {
-                if (preguntarSiNo(sc, "¿Tiene branquias? (si/no): ") && habitat == Habitat.ACUATICO) {
-                    return ClaseBiologica.PEZ;
-                } else {
-                    if (preguntarSiNo(sc, "¿Tiene piel húmeda? (si/no): ") && preguntarSiNo(sc, "¿Vive parte en agua y parte en tierra? (si/no): ")) {
-                        return ClaseBiologica.ANFIBIO;
+                if (habitat == Habitat.ACUATICO) {
+                    if (preguntarSiNo(sc, "¿Tiene branquias? (si/no): ")) {
+                        return ClaseBiologica.PEZ;
                     } else {
-                        if (preguntarSiNo(sc, "¿Tiene escamas? (si/no): ")) {
-                            return ClaseBiologica.REPTIL;
+                        if (preguntarSiNo(sc, "¿Tiene piel húmeda? (si/no): ")
+                                && preguntarSiNo(sc, "¿Vive parte en agua y parte en tierra? (si/no): ")) {
+                            return ClaseBiologica.ANFIBIO;
                         } else {
-                            return ClaseBiologica.INVERTEBRADO;
+                            if (preguntarSiNo(sc, "¿Tiene escamas? (si/no): ")) {
+                                return ClaseBiologica.REPTIL;
+                            } else {
+                                return ClaseBiologica.INVERTEBRADO;
+                            }
                         }
                     }
                 }
             }
+
         }
+
+        // 3) Si es TERRESTRE: primero mamífero, luego anfibio, luego reptil, si no invertebrado
+        if (preguntarSiNo(sc, "¿Tiene pelo? (si/no): ")) {
+            return ClaseBiologica.MAMIFERO;
+        }
+
+        if (preguntarSiNo(sc, "¿Tiene piel húmeda? (si/no): ")
+                && preguntarSiNo(sc, "¿Vive parte en agua y parte en tierra? (si/no): ")) {
+            return ClaseBiologica.ANFIBIO;
+        }
+
+        if (preguntarSiNo(sc, "¿Tiene escamas? (si/no): ")) {
+            return ClaseBiologica.REPTIL;
+        }
+
+        return ClaseBiologica.INVERTEBRADO;
     }
 
 
