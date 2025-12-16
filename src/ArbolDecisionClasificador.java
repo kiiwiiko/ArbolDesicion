@@ -29,33 +29,42 @@ public class ArbolDecisionClasificador {
     }
 
     private Habitat decidirHabitat(Scanner sc) {
-        boolean viveEnAgua = preguntarSiNo(sc, "¿Vive principalmente en el agua? (si/no): ");
-        if (viveEnAgua) return Habitat.ACUATICO;
+        if (preguntarSiNo(sc, "¿Vive principalmente en el agua? (si/no): ")) {
+            return Habitat.ACUATICO;
+        }
 
-        boolean puedeVolar = preguntarSiNo(sc, "¿Puede volar? (si/no): ");
-        if (puedeVolar) return Habitat.AEREO;
+        else {
+            if (preguntarSiNo(sc, "¿Puede volar? (si/no): ")) {
+                return Habitat.AEREO;
+            } else {
+                return Habitat.TERRESTRE;
+            }
+        }
 
-         else return Habitat.TERRESTRE;
     }
 
     private ClaseBiologica decidirClase(Scanner sc, Habitat habitat) {
-        boolean tienePelo = preguntarSiNo(sc, "¿Tiene pelo? (si/no): ");
-        if (tienePelo) return ClaseBiologica.MAMIFERO;
-
-        boolean tienePlumas = preguntarSiNo(sc, "¿Tiene plumas? (si/no): ");
-        if (tienePlumas) return ClaseBiologica.AVE;
-
-        boolean tieneBranquias = preguntarSiNo(sc, "¿Tiene branquias? (si/no): ");
-        if (tieneBranquias && habitat == Habitat.ACUATICO) return ClaseBiologica.PEZ;
-
-        boolean pielHumeda = preguntarSiNo(sc, "¿Tiene piel húmeda? (si/no): ");
-        boolean vidaAguaYTierra = preguntarSiNo(sc, "¿Vive parte en agua y parte en tierra? (si/no): ");
-        if (pielHumeda && vidaAguaYTierra) return ClaseBiologica.ANFIBIO;
-
-        boolean tieneEscamas = preguntarSiNo(sc, "¿Tiene escamas? (si/no): ");
-        if (tieneEscamas) return ClaseBiologica.REPTIL;
-
-        else return ClaseBiologica.INVERTEBRADO;
+        if (preguntarSiNo(sc, "¿Tiene pelo? (si/no): ")) {
+            return ClaseBiologica.MAMIFERO;
+        } else {
+            if (preguntarSiNo(sc, "¿Tiene plumas? (si/no): ")) {
+                return ClaseBiologica.AVE;
+            } else {
+                if (preguntarSiNo(sc, "¿Tiene branquias? (si/no): ") && habitat == Habitat.ACUATICO) {
+                    return ClaseBiologica.PEZ;
+                } else {
+                    if (preguntarSiNo(sc, "¿Tiene piel húmeda? (si/no): ") && preguntarSiNo(sc, "¿Vive parte en agua y parte en tierra? (si/no): ")) {
+                        return ClaseBiologica.ANFIBIO;
+                    } else {
+                        if (preguntarSiNo(sc, "¿Tiene escamas? (si/no): ")) {
+                            return ClaseBiologica.REPTIL;
+                        } else {
+                            return ClaseBiologica.INVERTEBRADO;
+                        }
+                    }
+                }
+            }
+        }
     }
 
 
