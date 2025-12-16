@@ -36,7 +36,7 @@ public class ArbolDecisionClasificador {
         boolean puedeVolar = preguntarSiNo(sc, "¿Puede volar? (si/no): ");
         if (puedeVolar) return Habitat.AEREO;
 
-        return Habitat.TERRESTRE;
+         else return Habitat.TERRESTRE;
     }
 
     private ClaseBiologica decidirClase(Scanner sc, Habitat habitat) {
@@ -56,7 +56,7 @@ public class ArbolDecisionClasificador {
         boolean tieneEscamas = preguntarSiNo(sc, "¿Tiene escamas? (si/no): ");
         if (tieneEscamas) return ClaseBiologica.REPTIL;
 
-        return ClaseBiologica.INVERTEBRADO;
+        else return ClaseBiologica.INVERTEBRADO;
     }
 
 
@@ -70,7 +70,7 @@ public class ArbolDecisionClasificador {
         boolean plantasYCarne = preguntarSiNo(sc, "¿Come plantas y carne? (si/no): ");
         if (plantasYCarne) return TipoAlimentacion.OMNIVORO;
 
-        return TipoAlimentacion.CARRONERO;
+        else return TipoAlimentacion.CARRONERO;
     }
 
 
